@@ -1,0 +1,710 @@
+{
+    "device": {
+        "element_reference": "device",
+        "specs": {
+            "type": {
+                "type": "String",
+                "description": "Name of device profile"
+            },
+            "label": {
+                "type": "String",
+                "description": "Label of the device"
+            },
+            "is_gateway": {
+                "type": "Boolean",
+                "description": "If this device is a gateway"
+            }
+        },
+        "api": {
+            "get_device": {
+                "path": "api/device/[deviceId]",
+                "type": "GET",
+                "return": "JSON"
+            },
+            "create_device": {
+                "path": "api/device",
+                "type": "POST",
+                "return": "JSON"
+            }
+        }
+    },
+    "service": {
+        "element_reference": "device_profile",
+        "api": {
+            "create_device_profile": {
+                "path": "api/deviceProfile",
+                "type": "POST",
+                "return": "JSON"
+            },
+            "get_device_profile": {
+                "path": "api/deviceProfile/[deviceProfileId]",
+                "type": "GET",
+                "return": "JSON"
+            },
+            "get_default_device_profile": {
+                "path": "api/deviceProfileInfo/default",
+                "type": "GET",
+                "return": "JSON"
+            }
+        }
+    },
+    "attribute": {
+        "element_reference": "attribute",
+        "api": {
+            "get_attribute": {
+                "path": "api/plugins/telemetry/[objType]/[thingsboardId]/values/attributes",
+                "type": "GET",
+                "return": "JSON"
+            },
+            "get_telemetry": {
+                "path": "api/plugins/telemetry/[objType]/[thingsboardId]/values/timeseries",
+                "type": "GET",
+                "return": "JSON"
+            },
+            "create_server_attribute": {
+                "path": "api/plugins/telemetry/[objType]/[thingsboardId]/attributes/SERVER_SCOPE",
+                "type": "POST",
+                "return": "JSON"
+            },
+            "create_telemetry": {
+                "path": "api/plugins/telemetry/[objType]/[thingsboardId]/timeseries/ANY?scope=ANY",
+                "type": "POST",
+                "return": "JSON"
+            }
+        }
+    },
+    "system": {
+        "element_reference": "asset",
+        "specs": {
+            "type": {
+                "type": "String",
+                "description": "Type of the asset"
+            },
+            "label": {
+                "type": "String",
+                "description": "Label of the asset"
+            }
+        },
+        "api": {
+            "get_asset_types": {
+                "path": "api/asset/types",
+                "type": "GET",
+                "return": "JSON"
+            },
+            "get_assets_of_type": {
+                "path": "api/tenant/assets?type=[objectType]&pageSize=9999&page=0",
+                "type": "GET",
+                "return": "JSON"
+            },
+            "get_asset": {
+                "path": "api/asset/[assetId]",
+                "type": "GET",
+                "return": "JSON"
+            },
+            "create_asset": {
+                "path": "api/asset",
+                "type": "POST",
+                "return": "JSON"
+            }
+        }
+    },
+    "dashboard": {
+        "element_reference": "asset",
+        "api": {
+            "create_dashboard": {
+                "path": "api/dashboard",
+                "type": "POST",
+                "return": "JSON"
+            },
+            "get_dashboard": {
+                "path": "api/dashboard/[dashboardId]",
+                "type": "GET",
+                "return": "JSON"
+            }
+        }
+    },
+    "relation": {
+        "api": {
+            "create_relation": {
+                "path": "api/relation",
+                "type": "POST",
+                "return": "JSON"
+            },
+            "get_list_relations": {
+                "path": "api/relations/info?fromId=[thingsboardId]&fromType=[fromEntityType]",
+                "type": "POST",
+                "return": "JSON"
+            }
+        }
+    },
+    "rule_chain": {
+        "api":{
+            "create_rule_chain": {
+                "path": "api/ruleChain",
+                "type": "POST",
+                "return": "JSON"
+            },
+            "update_rule_chain": {
+                "path": "api/ruleChain/metadata?updateRelated=true",
+                "type": "POST",
+                "return": "JSON"
+            },
+            "get_rule_chain": {
+                "path": "api/ruleChain/[rulechainId]/metadata",
+                "type": "GET",
+                "return": "JSON"
+            }
+        }
+    },
+    "schedule": [
+        {
+            "generator": {
+                "specs": {
+                    "function": {
+                        "type": "String",
+                        "description": "Function code"
+                    }
+                },
+                "config": {
+                    "type": "org.thingsboard.rule.engine.debug.TbMsgGeneratorNode"
+                },
+                "output": [
+                    "True", "False", "Failure"
+                ]
+            }
+        }
+    ],
+    "aggregation": [
+        {
+            "originator_attribute": {
+                "specs": {
+                    "client_attributes": {
+                        "type": "Array",
+                        "description": "List of client attributes"
+                    },
+                    "shared_attributes": {
+                        "type": "Array",
+                        "description": "List of shared attributes"
+                    },
+                    "server_attributes": {
+                        "type": "Array",
+                        "description": "List of server attributes"
+                    },
+                    "latest_timeseries": {
+                        "type": "Array",
+                        "description": "List of latest timeseries"
+                    }
+                },
+                "config": {
+                    "type": "org.thingsboard.rule.engine.metadata.TbGetAttributesNode"
+                },
+                "output": [
+                    "Success", "Failure"
+                ]
+            },
+            "originator_field": {
+                "config": {
+                    "type": "org.thingsboard.rule.engine.metadata.TbGetOriginatorFieldsNode"
+                },
+                "output": [
+                    "Success", "Failure"
+                ]
+            },
+            "originator_telemetry": {
+                "specs": {
+                    "timeseries_key": {
+                        "type": "String",
+                        "description": "Key of timeseries field"
+                    }
+                },
+                "config": {
+                    "type": "org.thingsboard.rule.engine.metadata.TbGetTelemetryNode"
+                },
+                "output": [
+                    "Success", "Failure"
+                ]
+            },
+            "related_attribute": {
+                "config": {
+                    "type": "org.thingsboard.rule.engine.metadata.TbGetRelatedAttributeNode"
+                },
+                "output": [
+                    "Success", "Failure"
+                ]
+            },
+            "related_device_attribute": {
+                "config": {
+                    "type": "org.thingsboard.rule.engine.metadata.TbGetDeviceAttrNode"
+                },
+                "output": [
+                    "Success", "Failure"
+                ]
+            }
+        }
+    ],
+    "formatting": [
+        {
+            "to_email": {
+                "specs": {
+                    "from": {
+                        "type": "String",
+                        "description": "From email address"
+                    },
+                    "to": {
+                        "type": "String",
+                        "description": "To email address"
+                    }
+                },
+                "config": {
+                    "type": "org.thingsboard.rule.engine.mail.TbMsgToEmailNode"
+                },
+                "output": [
+                    "Success", "Failure"
+                ]
+            },
+            "script": {
+                "specs": {
+                    "function": {
+                        "type": "String",
+                        "description": "Function code"
+                    }
+                },
+                "config": {
+                    "type": "org.thingsboard.rule.engine.transform.TbTransformMsgNode"
+                },
+                "output": [
+                    "Success", "Failure"
+                ]
+            }
+        }
+    ],
+    "filtering": [
+        {
+            "fields": {
+                "specs": {
+                    "message_data": {
+                        "type": "Array",
+                        "description": "Fields in message data"
+                    },
+                    "message_metadata": {
+                        "type": "Array",
+                        "description": "Fields in message metadata"
+                    }
+                },
+                "config": {
+                    "type": "org.thingsboard.rule.engine.filter.TbCheckMessageNode"
+                },
+                "output": [
+                    "True", "False", "Failure"
+                ]
+            },
+            "relations": {
+                "specs": {
+                    "direction": {
+                        "type": "String",
+                        "description": "From or To direction"
+                    },
+                    "type": {
+                        "type": "String",
+                        "description": "Type of entity"
+                    },
+                    "relation": {
+                        "type": "String",
+                        "description": "Type of relation"
+                    }
+                },
+                "config": {
+                    "type": "org.thingsboard.rule.engine.filter.TbCheckRelationNode"
+                },
+                "output": [
+                    "True", "False", "Failure"
+                ]
+            },
+            "geofencing": {
+                "specs": {
+                    "latitude_key": {
+                        "type": "String",
+                        "description": "Key of latitude field"
+                    },
+                    "longitude_key": {
+                        "type": "String",
+                        "description": "Key of Longitude field"
+                    },
+                    "type": {
+                        "type": "String",
+                        "description": "Type of perimeter"
+                    },
+                    "perimeter_key": {
+                        "type": "String",
+                        "description": "Key of perimeter field"
+                    }
+                },
+                "config": {
+                    "type": "org.thingsboard.rule.engine.geo.TbGpsGeofencingFilterNode"
+                },
+                "output": [
+                    "True", "False", "Failure"
+                ]
+            },
+            "originator_type": {
+                "specs": {
+                    "types": {
+                        "type": "Array",
+                        "description": "Originator types"
+                    }
+                },
+                "config": {
+                    "type": "org.thingsboard.rule.engine.filter.TbOriginatorTypeFilterNode"
+                },
+                "output": [
+                    "True", "False", "Failure"
+                ]
+            },
+            "script": {
+                "specs": {
+                    "function": {
+                        "type": "String",
+                        "description": "Function code"
+                    }
+                },
+                "config": {
+                    "type": "org.thingsboard.rule.engine.filter.TbJsFilterNode"
+                },
+                "output": [
+                    "True", "False", "Failure"
+                ]
+            }
+        }
+    ],
+    "scripting": {
+        "specs": {
+            "function": {
+                "type": "String",
+                "description": "Function code"
+            }
+        },
+        "config": {
+            "type": "org.thingsboard.rule.engine.transform.TbTransformMsgNode"
+        },
+        "output": [
+            "Success", "Failure"
+        ]
+    },
+    "pubsub_out": [
+        {
+            "mqtt": {
+                "specs": {
+                    "topic": {
+                        "type": "String",
+                        "description": "Topic pattern"
+                    },
+                    "host": {
+                        "type": "String",
+                        "description": "Host of mqtt"
+                    },
+                    "port": {
+                        "type": "String",
+                        "description": "Port of mqtt host"
+                    }
+                },
+                "config": {
+                    "type": "org.thingsboard.rule.engine.mqtt.TbMqttNode"
+                },
+                "output": [
+                    "Success", "Failure"
+                ]
+            },
+            "rabbitmq": {
+                "specs": {
+                    "topic": {
+                        "type": "String",
+                        "description": "Topic pattern"
+                    },
+                    "host": {
+                        "type": "String",
+                        "description": "Host of mqtt"
+                    },
+                    "port": {
+                        "type": "String",
+                        "description": "Port of mqtt host"
+                    }
+                },
+                "config": {
+                    "type": "org.thingsboard.rule.engine.rabbitmq.TbRabbitMqNode"
+                },
+                "output": [
+                    "Success", "Failure"
+                ]
+            },
+            "google_pubsub": {
+                "specs": {
+                    "project_id": {
+                        "type": "String",
+                        "description": "Id of Google Cloud project"
+                    },
+                    "topic": {
+                        "type": "String",
+                        "description": "Topic pattern"
+                    }
+                },
+                "config": {
+                    "type": "org.thingsboard.rule.engine.gcp.pubsub.TbPubSubNode"
+                },
+                "output": [
+                    "Success", "Failure"
+                ]
+            },
+            "azure_iot": {
+                "specs": {
+                    "topic": {
+                        "type": "String",
+                        "description": "Topic pattern"
+                    },
+                    "hostname": {
+                        "type": "String",
+                        "description": "Hostname of iot hub"
+                    },
+                    "device_id": {
+                        "type": "String",
+                        "description": "Id of the device"
+                    }
+                },
+                "config": {
+                    "type": "org.thingsboard.rule.engine.mqtt.azure.TbAzureIotHubNode"
+                },
+                "output": [
+                    "Success", "Failure"
+                ]
+            }
+        }
+    ],
+    "request_out": [
+        {
+            "rest_api_call": {
+                "specs": {
+                    "endpoint": {
+                        "type": "String",
+                        "description": "Api endpoint url"
+                    },
+                    "method": {
+                        "type": "String",
+                        "description": "Request method"
+                    }
+                },
+                "config": {
+                    "type": "org.thingsboard.rule.engine.rest.TbRestApiCallNode"
+                },
+                "output": [
+                    "Success", "Failure"
+                ]
+            }
+        }
+    ],
+    "notification": [
+        {
+            "send_email": {
+                "specs": {
+                    "email": {
+                        "type": "String",
+                        "description": "Recepient's email address"
+                    }
+                },
+                "config": {
+                    "type": "org.thingsboard.rule.engine.mail.TbSendEmailNode"
+                },
+                "output": [
+                    "Success", "Failure"
+                ]
+            },
+            "send_sms": {
+                "specs": {
+                    "number": {
+                        "type": "String",
+                        "description": "Recepient's telephone number"
+                    }
+                },
+                "config": {
+                    "type": "org.thingsboard.rule.engine.sms.TbSendSmsNode"
+                },
+                "output": [
+                    "Success", "Failure"
+                ]
+            }
+        }
+    ],
+    "widget": [
+        {
+            "element_reference": "widget_type",
+            "line_chart": {
+                "specs": {
+                    "attributeKey": {
+                        "type": "String",
+                        "description": "Target attribute key"
+                    }
+                },
+                "config": {
+                    "isSystemType": true,
+                    "bundleAlias": "charts",
+                    "typeAlias": "basic_timeseries",
+                    "type": "timeseries",
+                    "title": "New widget",
+                    "image": null,
+                    "description": null,
+                    "sizeX": 8,
+                    "sizeY": 5,
+                    "config": {
+                        "timewindow": {
+                            "realtime": {
+                                "timewindowMs": 60000
+                            }
+                        },
+                        "showTitle": true,
+                        "backgroundColor": "#fff",
+                        "color": "rgba(0, 0, 0, 0.87)",
+                        "padding": "8px",
+                        "settings": {
+                            "shadowSize": 4,
+                            "fontColor": "#545454",
+                            "fontSize": 10,
+                            "xaxis": {
+                                "showLabels": true,
+                                "color": "#545454"
+                            },
+                            "yaxis": {
+                                "showLabels": true,
+                                "color": "#545454",
+                                "tickDecimals": 0
+                            },
+                            "grid": {
+                                "color": "#545454",
+                                "tickColor": "#DDDDDD",
+                                "verticalLines": true,
+                                "horizontalLines": true,
+                                "outlineWidth": 1
+                            },
+                            "stack": false,
+                            "tooltipIndividual": false,
+                            "smoothLines": false,
+                            "tooltipCumulative": false,
+                            "hideZeros": false,
+                            "showTooltip": true,
+                            "comparisonEnabled": false,
+                            "timeForComparison": "previousInterval",
+                            "xaxisSecond": {
+                                "axisPosition": "top",
+                                "showLabels": true
+                            },
+                            "customLegendEnabled": false
+                        },
+                        "title": "New Timeseries Line Chart",
+                        "dropShadow": true,
+                        "enableFullscreen": true,
+                        "titleStyle": {
+                            "fontSize": "16px",
+                            "fontWeight": 400
+                        },
+                        "useDashboardTimewindow": true,
+                        "datasources": []
+                    },
+                    "row": 0,
+                    "col": 0,
+                    "id": "ec944ae5-3b20-c430-40b6-f16224aa5814"
+                }
+            },
+            "map": {
+                "specs": {
+                    "latitudeKey": {
+                        "type": "String",
+                        "description": "Latitude attribute key"
+                    },
+                    "longitudeKey": {
+                        "type": "String",
+                        "description": "Longitude attribute key"
+                    }
+                },
+                "config": {
+                    "isSystemType": true,
+                    "bundleAlias": "maps_v2",
+                    "typeAlias": "openstreetmap",
+                    "type": "latest",
+                    "title": "New widget",
+                    "image": null,
+                    "description": null,
+                    "sizeX": 9,
+                    "sizeY": 7,
+                    "config": {
+                        "timewindow": {
+                            "realtime": {
+                                "timewindowMs": 60000
+                            }
+                        },
+                        "showTitle": true,
+                        "backgroundColor": "#fff",
+                        "color": "rgba(0, 0, 0, 0.87)",
+                        "padding": "8px",
+                        "settings": {
+                            "fitMapBounds": true,
+                            "latKeyName": "latitude",
+                            "lngKeyName": "longitude",
+                            "showLabel": true,
+                            "label": "${entityName}",
+                            "tooltipPattern": "<b>${entityName}</b><br/><br/><b>Latitude:</b> ${latitude:7}<br/><b>Longitude:</b> ${longitude:7}<br/><b>Temperature:</b> ${temperature} °C<br/><small>See advanced settings for details</small>",
+                            "markerImageSize": 34,
+                            "useColorFunction": true,
+                            "useMarkerImageFunction": true,
+                            "colorFunction": "var type = dsData[dsIndex]['Type'];\nif (type == 'colorpin') {\n\tvar temperature = dsData[dsIndex]['temperature'];\n\tif (typeof temperature !== undefined) {\n\t    var percent = (temperature + 60)/120 * 100;\n\t    return tinycolor.mix('blue', 'red', amount = percent).toHexString();\n\t}\n\treturn 'blue';\n}\n",
+                            "markerImageFunction": "var type = dsData[dsIndex]['Type'];\nif (type == 'thermometer') {\n\tvar res = {\n\t    url: images[0],\n\t    size: 40\n\t}\n\tvar temperature = dsData[dsIndex]['temperature'];\n\tif (typeof temperature !== undefined) {\n\t    var percent = (temperature + 60)/120;\n\t    var index = Math.min(3, Math.floor(4 * percent));\n\t    res.url = images[index];\n\t}\n\treturn res;\n}",
+                            "color": "#fe7569",
+                            "mapProvider": "OpenStreetMap.Mapnik",
+                            "showTooltip": true,
+                            "autocloseTooltip": true,
+                            "tooltipFunction": "var deviceType = dsData[dsIndex]['Type'];\r\nif (typeof deviceType !== undefined) {\r\n    if (deviceType == \"energy meter\") {\r\n        return '<b>${entityName}</b><br/><b>Energy:</b> ${energy:2} kWt<br/>';\r\n    } else if (deviceType == \"thermometer\") {\r\n        return '<b>${entityName}</b><br/><b>Temperature:</b> ${temperature:2} °C<br/>';\r\n    }\r\n}",
+                            "labelFunction": "var deviceType = dsData[dsIndex]['Type'];\r\nif (typeof deviceType !== undefined) {\r\n    if (deviceType == \"energy meter\") {\r\n        return '<span style=\"color:orange;\">${entityName}, ${energy:2} kWt</span>';\r\n    } else if (deviceType == \"thermometer\") {\r\n        return '<span style=\"color:blue;\">${entityName}, ${temperature:2} °C</span>';\r\n    }\r\n}",
+                            "provider": "openstreet-map",
+                            "defaultCenterPosition": "0,0",
+                            "showTooltipAction": "click",
+                            "mapPageSize": 16384,
+                            "useTooltipFunction": false,
+                            "useCustomProvider": false,
+                            "useDefaultCenterPosition": false,
+                            "draggableMarker": false,
+                            "disableScrollZooming": false,
+                            "disableZoomControl": false,
+                            "useLabelFunction": false,
+                            "tooltipOffsetX": 0,
+                            "tooltipOffsetY": -1,
+                            "markerOffsetX": 0.5,
+                            "markerOffsetY": 1,
+                            "showPolygon": false,
+                            "showCircle": false,
+                            "useClusterMarkers": false,
+                            "polygonKeyName": "perimeter",
+                            "editablePolygon": false,
+                            "showPolygonLabel": false,
+                            "usePolygonColorFunction": false,
+                            "polygonOpacity": 0.2,
+                            "usePolygonStrokeColorFunction": false,
+                            "polygonStrokeOpacity": 1,
+                            "polygonStrokeWeight": 3,
+                            "showPolygonTooltip": false
+                        },
+                        "title": "New OpenStreetMap",
+                        "dropShadow": true,
+                        "enableFullscreen": true,
+                        "titleStyle": {
+                            "fontSize": "16px",
+                            "fontWeight": 400
+                        },
+                        "useDashboardTimewindow": true,
+                        "showLegend": false,
+                        "widgetStyle": {},
+                        "actions": {}
+                    },
+                    "row": 0,
+                    "col": 0,
+                    "id": "87ee4644-a6c2-ac87-919a-a89861ab4bf9"
+                }
+            }
+        }
+    ]
+}
