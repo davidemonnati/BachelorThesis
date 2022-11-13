@@ -132,7 +132,7 @@
             },
             "get_list_relations": {
                 "path": "api/relations/info?fromId=[thingsboardId]&fromType=[fromEntityType]",
-                "type": "POST",
+                "type": "GET",
                 "return": "JSON"
             }
         }

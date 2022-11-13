@@ -1,0 +1,1013 @@
+{
+    "application": {
+        "api": {
+            "create_application": {
+                "path": "applications",
+                "type": "POST",
+                "return": "JSON"
+            },
+            "get_applications": {
+                "path": "applications",
+                "type": "GET",
+                "return": "JSON"
+            }
+        }
+    },
+    "devices": {
+        "api": {
+            "create_device": {
+                "path": "applications/[applicationId]/devices",
+                "type": "POST",
+                "return": "JSON"
+            },
+            "set_child": {
+                "path": "applications/[applicationId]/devices",
+                "type": "PATCH",
+                "return": "JSON"
+            }
+        }
+    },
+    "dashboard": {
+        "api": {
+            "create_dashboard": {
+                "path": "dashboards",
+                "type": "POST",
+                "return": "JSON"
+            }
+        }
+    },
+    "workflow": {
+        "api": {
+            "create_workflow": {
+                "path": "applications/[applicationId]/flows",
+                "type": "POST",
+                "return": "JSON"
+            }
+        }
+    },
+    "device": [
+        {
+            "standalone": {
+                "specs": {
+                    "type": {
+                        "type": "String",
+                        "description": "Name of device profile"
+                    }
+                }
+            },
+            "gateway": {
+                "specs": {
+                    "type": {
+                        "type": "String",
+                        "description": "Name of device profile"
+                    }
+                }
+            },
+            "edgeCompute": {
+                "specs": {
+                    "type": {
+                        "type": "String",
+                        "description": "Name of device profile"
+                    }
+                }
+            },
+            "embedded": {
+                "specs": {
+                    "type": {
+                        "type": "String",
+                        "description": "Name of device profile"
+                    }
+                }
+            },
+            "peripheral": {
+                "specs": {
+                    "type": {
+                        "type": "String",
+                        "description": "Name of device profile"
+                    }
+                }
+            },
+            "api": {
+                "create_devices": {
+                    "path": "applications/[applicationId]/devices",
+                    "type": "POST",
+                    "return": "JSON"
+                },
+                "set_child": {
+                    "path": "applications/[applicationId]/devices",
+                    "type": "PATCH",
+                    "return": "JSON"
+                }
+            }
+        }
+    ],
+    "system": {
+        "specs": {
+            "type": {
+                "type": "String",
+                "description": "Type of the asset"
+            }
+        }
+    },
+    "pubsub_in": [
+        {
+            "mqtt": {
+                "specs": {
+                    "topic": {
+                        "type": "String",
+                        "description": "Mqtt topic"
+                    }
+                },
+                "config": {
+                    "config": {},
+                    "key": "mytopic",
+                    "meta": {
+                        "category": "trigger",
+                        "description": "",
+                        "label": "MQTT",
+                        "name": "mqtt",
+                        "uiId": "vZK8JXE8PI",
+                        "x": 20,
+                        "y": 20
+                    },
+                    "outputIds": [],
+                    "type": "mqttTopic"
+                },
+                "output": [
+                    "Success"
+                ]
+            },
+            "google_pubsub": {
+                "config": {
+                    "config": {},
+                    "key": "mytopic",
+                    "meta": {
+                        "category": "trigger",
+                        "description": "",
+                        "label": "MQTT",
+                        "name": "mqtt",
+                        "uiId": "vZK8JXE8PI",
+                        "x": 20,
+                        "y": 20
+                    },
+                    "outputIds": [],
+                    "type": "mqttTopic"
+                },
+                "output": [
+                    "Success"
+                ]
+            }
+        }
+    ],
+    "request_in": [
+        {
+            "http": {
+                "specs": {
+                    "endpoint": {
+                        "type": "String",
+                        "description": "Api endpoint url"
+                    },
+                    "method": {
+                        "type": "String",
+                        "description": "Request method"
+                    }
+                },
+                "config": {
+                    "config": {
+                        "experienceVersion": "develop"
+                    },
+                    "key": "~exportplaceholderid-experienceEndpoint-get-0~",
+                    "meta": {
+                        "category": "trigger",
+                        "description": "",
+                        "label": "Endpoint",
+                        "name": "endpoint",
+                        "uiId": "7ROwOmvSTv",
+                        "x": 80,
+                        "y": 220
+                    },
+                    "outputIds": [],
+                    "type": "endpoint"
+                },
+                "output": [
+                    "Success"
+                ]
+            }
+        }
+    ],
+    "schedule": [
+        {
+            "timer": {
+                "config": {
+                    "config": {
+                        "seconds": 60
+                    },
+                    "key": "~exportplaceholderid-flow-prova-4~-SXu0CX7EEa0xQ5sFfptoh",
+                    "meta": {
+                        "category": "trigger",
+                        "description": "",
+                        "label": "Timer",
+                        "name": "timer",
+                        "timeAt": "",
+                        "timerTypeSelect": "seconds",
+                        "uiId": "EvZ8pjasPH",
+                        "weekdays": [],
+                        "x": 80,
+                        "y": 320
+                    },
+                    "outputIds": [],
+                    "type": "timer"
+                },
+                "output": [
+                    "Success"
+                ]
+            }
+        }
+    ],
+    "aggregation": [
+        {
+            "array": {
+                "config": {
+                    "config": {
+                        "rules": [
+                            {
+                                "indexTemplate": "{{data.msg}}",
+                                "outputPath": "data.msg",
+                                "type": "lookupAt"
+                            }
+                        ],
+                        "sourceArrayPath": ""
+                    },
+                    "id": "UNnfXR8mO1",
+                    "meta": {
+                        "category": "logic",
+                        "description": "",
+                        "label": "Array",
+                        "name": "array",
+                        "x": 80,
+                        "y": 420
+                    },
+                    "outputIds": [],
+                    "type": "ArrayNode"
+                  },
+                "output": [
+                    "False", "True"
+                ]
+            }
+        }
+    ],
+    "formatting": [
+        {
+            "mutate": {
+                "specs": {
+                    "function": {
+                        "type": "String",
+                        "description": "Function code"
+                    }
+                },
+                "config": {
+                    "config": {
+                        "rules": [
+                            {
+                                "destination": "dat.new",
+                                "type": "set",
+                                "valueTemplate": "{{data.old}}",
+                                "valueTemplateType": "string"
+                            }
+                        ]
+                    },
+                    "id": "lGg_cKl9qV",
+                    "meta": {
+                        "category": "logic",
+                        "description": "",
+                        "label": "Mutate",
+                        "name": "mutate",
+                        "x": 20,
+                        "y": 20
+                    },
+                    "outputIds": [],
+                    "type": "MutateNode"
+                },
+                "output": [
+                    "Success"
+                ]
+            },
+            "object": {
+                "specs": {
+                    "function": {
+                        "type": "String",
+                        "description": "Function code"
+                    }
+                },
+                "config": {
+                    "config": {
+                        "operations": [
+                            {
+                                "outputPath": "data.output",
+                                "type": "keys"
+                            }
+                        ],
+                        "sourcePath": ""
+                    },
+                    "id": "9t9H3SHA4k",
+                    "meta": {
+                        "category": "logic",
+                        "description": "",
+                        "label": "Object",
+                        "name": "object",
+                        "x": 20,
+                        "y": 20
+                    },
+                    "outputIds": [],
+                    "type": "ObjectNode"
+                },
+                "output": [
+                    "Success"
+                ]
+            },
+            "string": {
+                "specs": {
+                    "function": {
+                        "type": "String",
+                        "description": "Function code"
+                    }
+                },
+                "config": {
+                    "config": {
+                        "method": "split",
+                        "methodArgs": [
+                          "-"
+                        ],
+                        "resultPath": "data.result",
+                        "sourceData": "{{data.input}}"
+                    },
+                    "id": "DuFhtUWJOU",
+                    "meta": {
+                        "category": "logic",
+                        "description": "",
+                        "label": "String",
+                        "name": "string",
+                        "x": 20,
+                        "y": 20
+                    },
+                    "outputIds": [],
+                    "type": "StringNode"
+                },
+                "output": [
+                    "Success"
+                ]
+            },
+            "date_time": {
+                "config": {
+                    "config": {
+                        "numberValue": "{{w.d}}",
+                        "operation": "add",
+                        "resultPath": "w.k",
+                        "timezone": "Europe/Rome",
+                        "unit": "year"
+                    },
+                    "id": "c1c1WUAAQa",
+                    "meta": {
+                        "category": "logic",
+                        "description": "",
+                        "label": "Date/Time",
+                        "name": "date-time",
+                        "x": 80,
+                        "y": 520
+                    },
+                    "outputIds": [],
+                    "type": "DateTimeNode"
+                },
+                "output": [
+                    "Success"
+                ]
+            },
+            "csv_encode": {
+                "config": {
+                    "config": {
+                        "destination": "data.d",
+                        "recordDelimiterTemplate": "\n",
+                        "source": "data.d"
+                    },
+                    "id": "nNnE8Xv41i",
+                    "meta": {
+                        "category": "logic",
+                        "description": "",
+                        "label": "CSV: Encode",
+                        "name": "csv-encode",
+                        "x": 80,
+                        "y": 620
+                    },
+                    "outputIds": [],
+                    "type": "CSVEncodeNode"
+                },
+                "output": [
+                    "Success"
+                ]
+            },
+            "csv_decode": {
+                "config": {
+                    "config": {
+                        "destination": "data",
+                        "recordDelimiterTemplate": "\n",
+                        "source": "data"
+                    },
+                    "id": "ub9iK9sdHG",
+                    "meta": {
+                        "category": "logic",
+                        "description": "",
+                        "label": "CSV: Decode",
+                        "name": "csv-decode",
+                        "x": 80,
+                        "y": 720
+                    },
+                    "outputIds": [],
+                    "type": "CSVDecodeNode"
+                },
+                "output": [
+                    "Success"
+                ]
+            }
+        }
+    ],
+    "filtering": [
+        {
+            "conditional": {
+                "specs": {
+                    "expression": {
+                        "type": "String",
+                        "description": "Conditional expression"
+                    }
+                },
+                "config": {
+                    "config": {
+                        "expression": ""
+                    },
+                    "id": "",
+                    "meta": {
+                        "category": "logic",
+                        "description": "",
+                        "label": "Conditional",
+                        "name": "conditional",
+                        "x": 20,
+                        "y": 20
+                    },
+                    "outputIds": [],
+                    "type": "ConditionalNode"
+                },
+                "output": [
+                    "False", "True"
+                ]
+            },
+            "switch": {
+                "config": {
+                    "config": {
+                        "cases": [],
+                        "switchTemplate": "{{data}}"
+                    },
+                    "id": "OnbKBOZ3OU",
+                    "meta": {
+                        "category": "logic",
+                        "description": "",
+                        "label": "Switch",
+                        "name": "switch",
+                        "x": 80,
+                        "y": 820
+                    },
+                    "outputIds": [],
+                    "type": "SwitchNode"
+                },
+                "output": [
+                    "Default"
+                ]
+            },
+            "time_range": {
+                "config": {
+                    "config": {
+                        "branchPath": "",
+                        "days": [
+                            true,
+                            true,
+                            true,
+                            true,
+                            true,
+                            true,
+                            true
+                        ],
+                        "daysPath": "",
+                        "daysType": "array",
+                        "endTimeTemplate": "",
+                        "sourcePath": "",
+                        "startTimeTemplate": "",
+                        "timeZoneTemplate": "Europe/Rome"
+                    },
+                    "id": "so0uWuqYmk",
+                    "meta": {
+                        "category": "logic",
+                        "description": "",
+                        "label": "Time Range",
+                        "name": "time-range",
+                        "x": 80,
+                        "y": 1120
+                    },
+                    "outputIds": [],
+                    "type": "TimeRangeNode"
+                },
+                "output": [
+                    "False", "True"
+                ]
+            },
+            "validate_payload": {
+                "specs": {
+                    "path": {
+                        "type": "String",
+                        "description": "Payload path to validate"
+                    },
+                    "schema": {
+                        "type": "String",
+                        "description": "Validation json schema"
+                    }
+                },
+                "config": {
+                    "config": {
+                        "errorsPath": "",
+                        "schema": "{}",
+                        "schemaType": "json",
+                        "toValidatePath": ""
+                    },
+                    "id": "J0OmK5uB5u",
+                    "meta": {
+                        "category": "logic",
+                        "description": "",
+                        "label": "Validate Payload",
+                        "name": "validate-payload",
+                        "x": 80,
+                        "y": 980
+                    },
+                    "outputIds": [],
+                    "type": "ValidatePayloadNode"
+                },
+                "output": [
+                    "False", "True"
+                ]
+            }
+        }
+    ],
+    "scripting": [
+        {
+            "function": {
+                "specs": {
+                    "code": {
+                        "type": "String",
+                        "description": "Function code"
+                    }
+                },
+                "config": {
+                    "config": {
+                        "script": ""
+                    },
+                    "id": "U1sFareRko",
+                    "meta": {
+                        "category": "logic",
+                        "description": "",
+                        "label": "Function",
+                        "name": "function",
+                        "x": 20,
+                        "y": 20
+                    },
+                    "outputIds": [],
+                    "type": "RawFunctionNode"
+                },
+                "output": [
+                    "Success"
+                ]
+            },
+            "math": {
+                "specs": {
+                    "expression": {
+                        "type": "String",
+                        "description": "Math expression"
+                    }
+                },
+                "config": {
+                    "config": {
+                        "statements": [
+                            {
+                                "expression": "",
+                                "resultPath": ""
+                            }
+                        ]
+                    },
+                    "id": "xgktKscXl3",
+                    "meta": {
+                        "category": "logic",
+                        "description": "",
+                        "label": "Math",
+                        "name": "math",
+                        "x": 20,
+                        "y": 20
+                    },
+                    "outputIds": [],
+                    "type": "MathNode"
+                },
+                "output": [
+                    "Success"
+                ]
+            }
+        }
+    ],
+    "notification": [
+        {
+            "email": {
+                "specs": {
+                    "email": {
+                        "type": "String",
+                        "description": "Email address"
+                    }
+                },
+                "config": {
+                    "config": {
+                        "bodyTemplate": "<!doctype html>\n<html>\n  <head>\n    <title></title>\n    <meta name=\"viewport\" content=\"width=device-width\" />\n    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />\n  </head>\n  <body>\n    <div>My custom body or {{data.emailBody}}</div>\n  </body>\n</html>\n",
+                        "fromTemplate": "",
+                        "resultPath": "",
+                        "subjectTemplate": "Subject",
+                        "toAddresses": [
+                            "email@domain.com"
+                        ]
+                    },
+                    "id": "YNX0Vso7lg",
+                    "meta": {
+                        "category": "output",
+                        "description": "",
+                        "label": "Email",
+                        "name": "structure-email",
+                        "x": 20,
+                        "y": 20
+                    },
+                    "outputIds": [],
+                    "type": "StructureEmailNode"
+                },
+                "output": [
+                    "Success"
+                ]
+            },
+            "sms": {
+                "specs": {
+                    "prova": {
+                        "type": "String",
+                        "description": "prova"
+                    }
+                },
+                "config": {
+                    "config": {
+                        "bodyTemplate": "SMS message",
+                        "phoneNumberTemplate": "33333333",
+                        "resultPath": ""
+                    },
+                    "id": "TefjYfeupF",
+                    "meta": {
+                        "category": "output",
+                        "description": "",
+                        "label": "SMS",
+                        "name": "structure-sms",
+                        "x": 20,
+                        "y": 20
+                    },
+                    "outputIds": [],
+                    "type": "StructureSmsNode"
+                },
+                "output": [
+                    "Success"
+                ]
+            }
+        }
+    ],
+    "pubsub_out": [
+        {
+            "mqtt": {
+                "specs": {
+                    "topic": {
+                        "type": "String",
+                        "description": "Mqtt topic"
+                    }
+                },
+                "config": {
+                    "config": {
+                        "integrationId": "losant",
+                        "messageTemplate": "",
+                        "resultPath": "",
+                        "topicTemplate": "mytopic"
+                    },
+                    "id": "py_GJwGvjl",
+                    "meta": {
+                        "category": "output",
+                        "description": "",
+                        "label": "MQTT",
+                        "name": "mqtt",
+                        "x": 20,
+                        "y": 20
+                    },
+                    "outputIds": [],
+                    "type": "MqttMessageNode"
+                },
+                "output": [
+                    "Success"
+                ]
+            },
+            "google_pubsub": {
+                "config": {
+                    "config": {},
+                    "key": "mytopic",
+                    "meta": {
+                        "category": "trigger",
+                        "description": "",
+                        "label": "MQTT",
+                        "name": "mqtt",
+                        "uiId": "vZK8JXE8PI",
+                        "x": 20,
+                        "y": 20
+                    },
+                    "outputIds": [],
+                    "type": "mqttTopic"
+                },
+                "output": [
+                    "Success"
+                ]
+            },
+            "azure_hub": {
+                "config": {
+                    "config": {},
+                    "key": "mytopic",
+                    "meta": {
+                        "category": "trigger",
+                        "description": "",
+                        "label": "MQTT",
+                        "name": "mqtt",
+                        "uiId": "vZK8JXE8PI",
+                        "x": 20,
+                        "y": 20
+                    },
+                    "outputIds": [],
+                    "type": "mqttTopic"
+                },
+                "output": [
+                    "Success"
+                ]
+            }
+        }
+    ],
+    "request_out": [
+        {
+            "http": {
+                "specs": {
+                    "endpoint": {
+                        "type": "String",
+                        "description": "Api endpoint url"
+                    },
+                    "method": {
+                        "type": "String",
+                        "description": "Request method"
+                    }
+                },
+                "config": {
+                    "config": {
+                        "authCredentials": {},
+                        "authType": "none",
+                        "caCertTemplate": "",
+                        "disableSSLVerification": false,
+                        "encodingTemplate": "utf8",
+                        "errorBehavior": "throw",
+                        "errorPath": "",
+                        "headerInfo": [],
+                        "method": "GET",
+                        "requestEncodingTemplate": "utf8",
+                        "responsePath": "",
+                        "timeoutTemplate": "",
+                        "uriTemplate": "https://url.com"
+                    },
+                    "id": "Tylr9Cd2Aa",
+                    "meta": {
+                        "category": "output",
+                        "description": "",
+                        "label": "HTTP",
+                        "name": "http",
+                        "x": 20,
+                        "y": 20
+                    },
+                    "outputIds": [],
+                    "type": "HttpNode"
+                },
+                "output": [
+                    "Success"
+                ]
+            }
+        }
+    ],
+    "storage": [
+        {
+            "sql": {
+                "config": {
+                    "config": {
+                        "databaseTemplate": "{{d}}",
+                        "hostTemplate": "{{d}}",
+                        "passwordTemplate": "",
+                        "portTemplate": "",
+                        "query": "SEL",
+                        "resultPath": "",
+                        "sslDataMethod": "payloadPath",
+                        "sslDataTemplate": "",
+                        "sslOn": false,
+                        "systemTemplate": "mssql",
+                        "userTemplate": "{{d}}"
+                    },
+                    "id": "v8q4_8wPh5",
+                    "meta": {
+                        "category": "data",
+                        "description": "",
+                        "label": "SQL",
+                        "name": "sql",
+                        "x": 80,
+                        "y": 1460
+                    },
+                    "outputIds": [],
+                    "type": "SqlNode"
+                },
+                "output": [
+                    "Success"
+                ]
+            },
+            "redis": {
+                "config": {
+                    "config": {
+                        "arguments": [
+                          "ff"
+                        ],
+                        "command": "get",
+                        "dbNumber": "",
+                        "host": "m",
+                        "password": "",
+                        "port": "",
+                        "resultPath": "",
+                        "tlsOn": false,
+                        "username": ""
+                    },
+                    "id": "IeB5jaG9V0",
+                    "meta": {
+                        "category": "data",
+                        "description": "",
+                        "label": "Redis",
+                        "name": "redis",
+                        "x": 80,
+                        "y": 1560
+                    },
+                    "outputIds": [],
+                    "type": "RedisNode"
+                },
+                "output": [
+                    "Success"
+                ]
+            },
+            "mongodb": {
+                "config": {
+                    "config": {
+                        "collectionNameTemplate": "m",
+                        "errorBehavior": "throw",
+                        "errorPath": "",
+                        "mongoArgs": [
+                        {
+                            "value": "",
+                            "valueType": "json"
+                        },
+                        {
+                            "value": "",
+                            "valueType": "json"
+                        }
+                        ],
+                        "mongoMethod": "count",
+                        "mongoUriTemplate": "m",
+                        "resultPath": ""
+                    },
+                    "id": "A0CAhi3AsW",
+                    "meta": {
+                        "category": "data",
+                        "description": "",
+                        "label": "MongoDB",
+                        "name": "mongo",
+                        "x": 80,
+                        "y": 1660
+                    },
+                    "outputIds": [],
+                    "type": "MongoNode"
+                },
+                "output": [
+                    "Success"
+                ]
+            },
+            "internal": {
+                "config": {
+                    "config": {
+                        "keyName": "d",
+                        "resultPath": "",
+                        "value": "d",
+                        "valueType": "path"
+                    },
+                    "id": "GBMkRI15xs",
+                    "meta": {
+                        "category": "data",
+                        "description": "",
+                        "label": "Storage: Set Value",
+                        "name": "store-value",
+                        "x": 80,
+                        "y": 1760
+                    },
+                    "outputIds": [],
+                    "type": "StoreValueNode"
+                },
+                "output": [
+                    "Success"
+                ]
+            }
+        }
+    ],
+    "widget": [
+        {
+            "line_chart": {
+                "specs": {
+                    "attribute": {
+                        "type": "String",
+                        "description": "Attribute name"
+                    }
+                },
+                "config": {
+                    "applicationId": "~exportplaceholderid-application-demo-0~",
+                    "blockType": "graph",
+                    "config": {
+                        "duration": 3600000,
+                        "resolution": 60000,
+                        "segments": [
+                            {
+                                "aggregation": {
+                                    "options": {},
+                                    "type": "MEAN"
+                                },
+                                "attribute": "",
+                                "color": "#ff261b",
+                                "deviceIds": [],
+                                "deviceTags": [],
+                                "dotWeight": 1,
+                                "expression": "",
+                                "graphType": "line",
+                                "label": "Series 1",
+                                "lineType": "monotone",
+                                "lineWeight": 2,
+                                "yAxisFormat": "",
+                                "yAxisLabel": "",
+                                "yAxisMax": "",
+                                "yAxisMin": ""
+                            }
+                        ]
+                    },
+                    "height": 2,
+                    "id": "DPFEQLu2cy",
+                    "startX": 0,
+                    "startY": 0,
+                    "title": "Line Chart",
+                    "width": 2
+                }
+            },
+            "map": {
+                "specs": {
+                    "attribute": {
+                        "type": "String",
+                        "description": "Attribute name"
+                    }
+                },
+                "config": {
+                    "applicationId": "~exportplaceholderid-application-demo-0~",
+                    "blockType": "map",
+                    "config": {
+                        "additionalAttributes": [],
+                        "defaultBearing": 0,
+                        "defaultPitch": 0,
+                        "defaultZoom": "auto",
+                        "deviceIds": [],
+                        "deviceTags": [],
+                        "duration": 3600000,
+                        "endColor": "#8db319",
+                        "iconTemplate": "{{#if isLastPoint}}\n{{colorMarker '#8db319'}}\n{{else if isFirstPoint}}\n{{colorMarker '#ff261b'}}\n{{/if}}",
+                        "pinMode": "simple",
+                        "popupTemplate": "##### **{{deviceName}}** {{#if isLastPoint}} (Current Location){{else if isFirstPoint}} (Starting Location){{/if}}\n\n{{format time}}\n\nLatLng({{format latitude}}, {{format longitude}})",
+                        "resolution": 10000,
+                        "startColor": "#ff261b"
+                    },
+                    "height": 2,
+                    "id": "8Zmsm6jbVy",
+                    "startX": 0,
+                    "startY": 0,
+                    "title": "Map",
+                    "width": 2
+                }
+            }
+        }
+    ]
+}
