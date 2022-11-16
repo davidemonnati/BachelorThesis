@@ -24,6 +24,11 @@
                 "path": "applications/[applicationId]/devices",
                 "type": "PATCH",
                 "return": "JSON"
+            },
+            "get_all_devices": {
+                "path": "applications/[applicationId]/devices",
+                "type": "GET",
+                "return": "JSON"
             }
         }
     },
@@ -33,6 +38,11 @@
                 "path": "dashboards",
                 "type": "POST",
                 "return": "JSON"
+            },
+            "get_application_dashboards": {
+                "path": "dashboards?applicationId=[applicationId]",
+                "type": "GET",
+                "return": "JSON"
             }
         }
     },
@@ -41,6 +51,15 @@
             "create_workflow": {
                 "path": "applications/[applicationId]/flows",
                 "type": "POST",
+                "return": "JSON"
+            }
+        }
+    },
+    "service": {
+        "api": {
+            "get_app_keys": {
+                "path": "applications/[applicationId]/keys",
+                "type": "GET",
                 "return": "JSON"
             }
         }
