@@ -48,6 +48,11 @@
     },
     "workflow": {
         "api": {
+            "get_workflows": {
+                "path": "applications/[applicationId]/flows",
+                "type": "GET",
+                "return": "JSON"
+            },
             "create_workflow": {
                 "path": "applications/[applicationId]/flows",
                 "type": "POST",
@@ -57,6 +62,11 @@
     },
     "service": {
         "api": {
+            "add_app_key": {
+                "path": "applications/[applicationId]/keys",
+                "type": "POST",
+                "return": "JSON"
+            },
             "get_app_keys": {
                 "path": "applications/[applicationId]/keys",
                 "type": "GET",
