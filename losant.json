@@ -72,6 +72,12 @@
                 "type": "GET",
                 "return": "JSON"
             }
+        },
+        "specs": {
+            "topic": {
+                "type": "String",
+                "description": "Topic pattern"
+            }
         }
     },
     "device": [
