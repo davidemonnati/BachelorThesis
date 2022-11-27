@@ -121,18 +121,6 @@
                         "description": "Name of device profile"
                     }
                 }
-            },
-            "api": {
-                "create_devices": {
-                    "path": "applications/[applicationId]/devices",
-                    "type": "POST",
-                    "return": "JSON"
-                },
-                "set_child": {
-                    "path": "applications/[applicationId]/devices",
-                    "type": "PATCH",
-                    "return": "JSON"
-                }
             }
         }
     ],
@@ -809,7 +797,6 @@
                         "authCredentials": {},
                         "authType": "none",
                         "caCertTemplate": "",
-                        "disableSSLVerification": false,
                         "encodingTemplate": "utf8",
                         "errorBehavior": "throw",
                         "errorPath": "",

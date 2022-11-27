@@ -138,7 +138,7 @@
         }
     },
     "rule_chain": {
-        "api":{
+        "api": {
             "create_rule_chain": {
                 "path": "api/ruleChain",
                 "type": "POST",
@@ -704,6 +704,25 @@
                     "col": 0,
                     "id": "87ee4644-a6c2-ac87-919a-a89861ab4bf9"
                 }
+            }
+        }
+    ],
+    "storage": [
+        {
+            "save_timeseries": {
+                "specs": {
+                    "Default TTL": {
+                        "type": "integer",
+                        "description": "Default TTL in seconds"
+                    }
+                },
+                "config": {
+                    "type": "org.thingsboard.rule.engine.telemetry.TbMsgTimeseriesNode"
+                },
+                "output": [
+                    "Success",
+                    "Failure"
+                ]
             }
         }
     ]
