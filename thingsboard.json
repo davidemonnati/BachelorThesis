@@ -109,7 +109,7 @@
         }
     },
     "dashboard": {
-        "element_reference": "asset",
+        "element_reference": "dashboard",
         "api": {
             "create_dashboard": {
                 "path": "api/dashboard",
